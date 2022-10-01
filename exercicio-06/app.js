@@ -26,11 +26,11 @@
 const fruits = ['morango', 'banana', 'mamão']
 
 if (fruits.includes("abacaxi")) {
-  console.log("A string 'abacaxi' existe no array fruits")
+  console.log("A string 'abacaxi' existe no array fruits.")
 } else if (fruits.includes("pera")){
-  console.log("A string 'pera' existe no array fruits")
+  console.log("A string 'pera' existe no array fruits.")
 } else {
-  console.log("Nem pera nem abacaxi existem no array fruits")
+  console.log("Nem pera nem abacaxi existem no array fruits.")
 }
 
 
@@ -49,9 +49,21 @@ if (fruits.includes("abacaxi")) {
 
 const hour = 20
 
-if (hour >= 6 && hour < 12) {
+if (hour >= 6 && hour <= 11) {
   console.log("Bom dia!")
-} else if (hour >= 12 && hour < 18) {
+} else if (hour >= 12 && hour <= 17) {
+  console.log("Boa tarde!")
+} else {
+  console.log("Boa noite!")
+}
+
+//Refatorado
+const isMorning = hour >= 6 && hour <= 11
+const isAfternoon = hour >= 12 && hour <= 17
+
+if (isMorning) {
+  console.log("Bom dia!")
+} else if (isAfternoon) {
   console.log("Boa tarde!")
 } else {
   console.log("Boa noite!")
@@ -72,7 +84,7 @@ if (hour >= 6 && hour < 12) {
 */
 
 const age = 30
-let message = ""
+let message = null
 
 if (age <= 7 || age >= 65) {
   message = "Para você, a entrada é grátis!"
@@ -81,6 +93,16 @@ if (age <= 7 || age >= 65) {
 }
 
 console.log(message)
+
+// Refatorado
+const isChild = age <= 7
+const isOlder = age >= 65
+
+if (isChild || isOlder) {
+  message = "Para você, a entrada é grátis!"
+} else {
+  message = "A entrada é R$30,00"
+}
 
 /*
   04
@@ -95,8 +117,11 @@ const numbers = [7, 92, 34, 46, 90, 25, 11, 3, 89, 76, 99]
 let newNumbers = []
 
 for (let i = 0; i < numbers.length; i++) {
-  if (numbers[i] >= 11 && numbers[i] <= 90) {
-    newNumbers.push(numbers[i])
+  const number = numbers[i]
+  const numbersBetween11And90 = number >= 11 && number <= 90
+
+  if (numbersBetween11And90) {
+    newNumbers.push(number)
   }
 }
 
@@ -122,11 +147,15 @@ let boolCounter = 0
 let numCounter = 0
 
 for (let i = 0; i < crazyArray.length; i++) {
-  if (typeof crazyArray[i] === typeof true) {
+  const typeOfTest = typeof crazyArray[i]
+  const isANumber = typeOfTest === "number"
+  const isABoolean = typeOfTest === "boolean"
+
+  if (isABoolean) {
     boolCounter++
-  } else if (typeof crazyArray[i] === typeof 1) {
+  } else if (isANumber) {
     numCounter++
-  } else if (typeof crazyArray[i] === typeof "string") {
+  } else {
     strCounter++
   }
 }
@@ -156,15 +185,18 @@ let evenNumbers = []
 let oddNumbers = []
 
 for (let i = 0; i < randomNumbers.length; i++) {
-  if (randomNumbers[i] % 2 === 0) {
-    evenNumbers.push(randomNumbers[i])
+  const randomNumbersItem = randomNumbers[i]
+  const isEvenNumber = randomNumbersItem % 2 === 0
+
+  if (isEvenNumber) {
+    evenNumbers.push(randomNumbersItem)
   } else {
-    oddNumbers.push(randomNumbers[i])
+    oddNumbers.push(randomNumbersItem)
   }
 }
 
 let evenNumbersString = evenNumbers.join(" ").replace("4 10 58", "4, 10 e 58")
 let oddNumbersString = oddNumbers.join(" ").replace("73 67 31", "73, 67 e 31")
 
-console.log(`Numeros ímpares: ${evenNumbersString}. Números pares: ${oddNumbersString}.`)
+console.log(`Numeros ímpares: ${oddNumbersString}. Números pares: ${evenNumbersString}.`)
 
