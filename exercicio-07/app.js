@@ -37,10 +37,11 @@ if (!animals.includes("leão")) {
 
 const randomNumbers = [59, 61, 73, 57, 35, 73, 21, 87, 43]
 let amount = 0
+const limit = 400
 
 for (let i = 0; i < randomNumbers.length; i++) {
-  if (amount > 400) {
-    console.log(`A soma ultrapassou 400. Até aqui, o valor atual é ${amount}.`)
+  if (amount > limit) {
+    console.log(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${amount}.`)
     break
   }
   amount += randomNumbers[i]
@@ -94,14 +95,16 @@ let iterationCounter = null
 
 for (let i = 0; i < randomValues.length; i++) {
   let randomValuesItem = randomValues[i]
+  let isItemAString = typeof randomValuesItem === "string"
+  let isItemABoolean = typeof randomValuesItem === "boolean"
 
   if (stringArray.length === 4) {
     break
   }
 
-  if (typeof randomValuesItem === "string") {
+  if (isItemAString) {
     stringArray.push(randomValuesItem)
-  } else if (typeof randomValuesItem === "boolean") {
+  } else if (isItemABoolean) {
     booleansArray.push(randomValuesItem)
   }
 
@@ -109,8 +112,11 @@ for (let i = 0; i < randomValues.length; i++) {
 
 }
 
+const lastItem = stringArray[stringArray.length - 1]
+const fourStrings = stringArray.join(", ").replace(`${lastItem}`, `e ${lastItem}`)
+
 console.log(`3 informações sobre o array randomValues:
-- As primeiras 4 strings são ${stringArray.join(", ").replace(", Git", " e Git")};
+- As primeiras 4 strings são ${fourStrings};
 - Até que as primeiras 4 strings fossem iteradas, ${booleansArray.length} booleans foram iterados;
 - O array foi iterado por ${iterationCounter} vezes.`)
 
@@ -161,7 +167,8 @@ console.log(message)
     para testar o switch que você escreveu.
 */
 
-const a = 2
+const number = 2
+const numberSentence = `O valor de "number" é`
 
 // if (a === 0) {
 //   console.log(`O valor de "a" é ${a}`)
@@ -171,13 +178,13 @@ const a = 2
 //   console.log('O valor de "a" é qualquer número, exceto 0 e 1')
 // }
 
-switch (a) {
-  case a === 0:
-    console.log(`O valor de "a" é ${a}`)
-    break
-  case a === 1:
-    console.log(`O valor de "a" é ${a}`)
+switch (number) {
+  case 0:
+    console.log(`${numberSentence} ${number}`)
+    brenumberk
+  case 1:
+    console.log(`${numberSentence} ${number}`)
     break
   default:
-    console.log('O valor de "a" é qualquer número, exceto 0 e 1')
+    console.log(`${numberSentence} qualquer número, exceto 0 e 1`)
 }
