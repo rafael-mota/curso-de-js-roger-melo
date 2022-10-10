@@ -13,9 +13,11 @@
     valor no console.
 */
 
-function convertToString (value) {
-  return String(value)
-}
+// function convertToString (value) {
+//   return String(value)
+// }
+
+const convertToString = value => console.log(String(value))
 
 /*
   02
@@ -23,6 +25,12 @@ function convertToString (value) {
   - Crie uma função que retorne a quantidade de caracteres que uma string  
     recebida por parâmetro possui.
 */
+
+const stringLettersCounter = string => {
+  return string.length
+}
+
+convertToString(stringLettersCounter("case"))
 
 /*
   03
@@ -34,12 +42,20 @@ function convertToString (value) {
   "CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM PLENO FEVEREIRO"
 */
 
+const sentenceToLowerCase = sentence => sentence.toLowerCase()
+
+convertToString(sentenceToLowerCase("CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM PLENO FEVEREIRO"))
+
 /*
   04
 
   - Crie uma função que recebe 2 parâmetros: um caractere e uma string;
   - Ao ser invocada, a função deve retornar o index do caractere na string.
 */
+
+const characterIndex = (character, string) => string.indexOf(character)
+
+convertToString(characterIndex("h", "Mythril"))
 
 /*
   05
@@ -48,12 +64,24 @@ function convertToString (value) {
     passado por argumento existe no array (também passado por argumento).
 */
 
+const fruits = ["abacaxi", "melao", "morango", "caja", "limao"]
+
+const isItemInArray = (item, array) => array.includes(item)
+
+convertToString(isItemInArray("laranja", fruits))
+
 /*
   06
 
   - Crie uma função que retorna a concatenação de 2 arrays, passados como  
     argumentos em sua invocação;
 */
+const arr1 = ["teste", "de função"]
+const arr2 = ["concluída", "com sucesso"]
+
+const arrayConcatenator = (firstArray, secondArray) => firstArray.concat(secondArray)
+
+console.log(arrayConcatenator(arr1, arr2))
 
 /*
   07
@@ -62,12 +90,28 @@ function convertToString (value) {
     mas com o último item removido.
 */
 
+const arrayRemoveLastItem = [1, 34, 25, 64, 32, 55]
+
+const lastItemRemover = array => {
+  array.pop()
+  return array
+}
+
+console.log(lastItemRemover(arrayRemoveLastItem))
+
 /*
   08
 
   - Crie uma função que retorna se o valor passado como argumento em sua  
     invocação é null.
 */
+
+let empty = null
+
+const isNull = item => item === null
+
+console.log(isNull(empty))
+
 
 /*
   09
@@ -80,6 +124,12 @@ function convertToString (value) {
     foi exibido.
 */
 
+const callbackReceiver = callback => callback
+
+const showName = () => console.log("Rafael")
+
+callbackReceiver(showName())
+
 /*
   10
 
@@ -90,6 +140,12 @@ function convertToString (value) {
   - Faça com que a invocação da função descrita no 1º item deste exercício (10)  
     resulte no triplo de 33.
 */
+
+const secondCallbackReceiver = callback => console.log(callback)
+
+const tripleReturner = number => number * 3
+
+secondCallbackReceiver(tripleReturner(33))
 
 /*
   11
@@ -102,6 +158,12 @@ function convertToString (value) {
 
 const numbers = [1, 2, 3]
 
+const showArrayIterationInfo = (item, index, array) => {
+  console.log(`O ${index + 1}º item do array [${numbers}] é ${item}.`)
+}
+
+numbers.forEach(showArrayIterationInfo)
+
 /*
   12
 
@@ -113,9 +175,13 @@ const numbers = [1, 2, 3]
 const letters = ['v', 'e', 'p']
 let lettersCopy = []
 
-for (let i = 0; i < letters.length; i++) {
-  lettersCopy.push(letters[i])
-}
+// for (let i = 0; i < letters.length; i++) {
+//   lettersCopy.push(letters[i])
+// }
+
+letters.forEach(item => lettersCopy.push(item))
+
+console.log(lettersCopy)
 
 /*
   13
@@ -146,6 +212,8 @@ const review = [
 
 let paragraphs = ''
 
+review.forEach(item => paragraphs += `<p>${item}</p>`)
+
 section.innerHTML = paragraphs
 
 /*
@@ -168,3 +236,23 @@ section.innerHTML = paragraphs
     pelo restante da quantidade de pessoas que curtiram o post (além das duas  
     pessoas já mencionadas no início da mensagem).
 */
+
+const peopleArray = ["Rafael", "Joao", "Maria", "Leopoldo", "Pedro", "Henriqueta"]
+
+const postLikes = array => {
+  const peopleNumbers = array.length
+
+  if (peopleNumbers === 0) {
+    return "Ninguém curtiu isso"
+  } else if (peopleNumbers === 1) {
+    return `${array[0]} curtiu isso`
+  } else if (peopleNumbers === 2) {
+    return `${array[0]} e ${array[1]} curtiram isso`
+  } else if (peopleNumbers === 3) {
+    return `${array[0]}, ${array[1]} e ${array[2]} curtiram isso`
+  } else {
+    return `${array[0]}, ${array[1]} e mais ${peopleNumbers - 2} pessoas curtiram isso`
+  }
+}
+
+console.log(postLikes(peopleArray))
