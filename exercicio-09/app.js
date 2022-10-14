@@ -17,7 +17,9 @@
 //   return String(value)
 // }
 
-const convertToString = value => console.log(String(value))
+const convertToString = value => String(value)
+
+console.log(convertToString(true))
 
 /*
   02
@@ -26,11 +28,9 @@ const convertToString = value => console.log(String(value))
     recebida por parâmetro possui.
 */
 
-const stringLettersCounter = string => {
-  return string.length
-}
+const stringLettersCounter = string => string.length
 
-convertToString(stringLettersCounter("case"))
+console.log(stringLettersCounter("olá"))
 
 /*
   03
@@ -44,7 +44,7 @@ convertToString(stringLettersCounter("case"))
 
 const sentenceToLowerCase = sentence => sentence.toLowerCase()
 
-convertToString(sentenceToLowerCase("CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM PLENO FEVEREIRO"))
+console.log(sentenceToLowerCase("CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM PLENO FEVEREIRO"))
 
 /*
   04
@@ -55,7 +55,7 @@ convertToString(sentenceToLowerCase("CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCAD
 
 const characterIndex = (character, string) => string.indexOf(character)
 
-convertToString(characterIndex("h", "Mythril"))
+console.log(characterIndex("h", "Mythril"))
 
 /*
   05
@@ -68,7 +68,7 @@ const fruits = ["abacaxi", "melao", "morango", "caja", "limao"]
 
 const isItemInArray = (item, array) => array.includes(item)
 
-convertToString(isItemInArray("laranja", fruits))
+console.log(isItemInArray("laranja", fruits))
 
 /*
   06
@@ -76,6 +76,7 @@ convertToString(isItemInArray("laranja", fruits))
   - Crie uma função que retorna a concatenação de 2 arrays, passados como  
     argumentos em sua invocação;
 */
+
 const arr1 = ["teste", "de função"]
 const arr2 = ["concluída", "com sucesso"]
 
@@ -112,7 +113,6 @@ const isNull = item => item === null
 
 console.log(isNull(empty))
 
-
 /*
   09
 
@@ -141,11 +141,11 @@ callbackReceiver(showName())
     resulte no triplo de 33.
 */
 
-const secondCallbackReceiver = callback => console.log(callback)
+const secondCallback = (value, callback) => callback(value)
 
-const tripleReturner = number => number * 3
+const triple = value => value * 3
 
-secondCallbackReceiver(tripleReturner(33))
+console.log(secondCallback(5, triple))
 
 /*
   11
@@ -159,7 +159,10 @@ secondCallbackReceiver(tripleReturner(33))
 const numbers = [1, 2, 3]
 
 const showArrayIterationInfo = (item, index, array) => {
-  console.log(`O ${index + 1}º item do array [${numbers}] é ${item}.`)
+  const itemPosition = index + 1
+  const items = array.join(", ")
+
+  console.log(`O ${itemPosition}º item do array [${items}] é ${item}.`)
 }
 
 numbers.forEach(showArrayIterationInfo)
@@ -179,7 +182,7 @@ let lettersCopy = []
 //   lettersCopy.push(letters[i])
 // }
 
-letters.forEach(item => lettersCopy.push(item))
+letters.forEach(letter => lettersCopy.push(letter))
 
 console.log(lettersCopy)
 
@@ -212,7 +215,9 @@ const review = [
 
 let paragraphs = ''
 
-review.forEach(item => paragraphs += `<p>${item}</p>`)
+const createParagraphs = paragraph => paragraphs += `<p>${[paragraph]}</p>`
+
+review.forEach(createParagraphs)
 
 section.innerHTML = paragraphs
 
@@ -241,18 +246,24 @@ const peopleArray = ["Rafael", "Joao", "Maria", "Leopoldo", "Pedro", "Henriqueta
 
 const postLikes = array => {
   const peopleNumbers = array.length
+  const firstName = array[0]
+  const secondName = array[1]
+  const thirdName = array[2]
+  const arrayPeople = peopleNumbers - 2
 
-  if (peopleNumbers === 0) {
-    return "Ninguém curtiu isso"
-  } else if (peopleNumbers === 1) {
-    return `${array[0]} curtiu isso`
-  } else if (peopleNumbers === 2) {
-    return `${array[0]} e ${array[1]} curtiram isso`
-  } else if (peopleNumbers === 3) {
-    return `${array[0]}, ${array[1]} e ${array[2]} curtiram isso`
-  } else {
-    return `${array[0]}, ${array[1]} e mais ${peopleNumbers - 2} pessoas curtiram isso`
+  switch (peopleNumbers) {
+    case 0:
+      return "Ninguém curtiu isso"
+    case 1:
+      return `${firstName} curtiu isso`
+    case 2:
+      return `${firstName} e ${secondName} curtiram isso`
+    case 3:
+      return `${firstName}, ${secondName} e ${thirdName} curtiram isso`
+    default:
+      return `${firstName}, ${secondName} e mais ${arrayPeople} pessoas curtiram isso`
   }
+
 }
 
 console.log(postLikes(peopleArray))
