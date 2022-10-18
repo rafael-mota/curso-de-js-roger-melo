@@ -53,9 +53,9 @@ console.log(cat.age)
     adicionado.
 */
 
-const newBestFriend = (name, array) => array.push(name)
+const newBestFriend = (name, object) => object.bestFriends.push(name)
 
-newBestFriend("Jove Papis", cat.bestFriends)
+newBestFriend("Jove Papis", cat)
 
 console.log(cat.bestFriends)
 
@@ -82,7 +82,7 @@ console.log(cat['color'])
   - Utilize a função para exibir no console se "cat" é um objeto.
 */
 
-const isBoolean = object => typeof object === typeof {}
+const isBoolean = object => typeof object === 'object'
 
 console.log(isBoolean(cat))
 
@@ -106,7 +106,9 @@ let dog = {
   }
 }
 
-console.log(`A soma das idades de ${cat.name} e ${dog.name} é ${cat.age + dog.age}.`)
+const showMessage = (object1, object2) => `A soma das idades de ${object1.name} e ${object2.name} é ${object1.age + object2.age}.`
+
+console.log(showMessage(cat, dog))
 
 /*
   08
@@ -155,7 +157,17 @@ const typeCheck = type => {
     undefined: 'Representa um valor não-setado.',
     object: 'Arrays, Datas, Objetos literais, Funções, etc.'
   }
-  return typeObject[typeof type]
+  return typeObject[type]
+}
+
+// Podemos fazer dessa forma, porém menos legível:
+const typeCheck2 = type => {
+  return typeObject = {
+    null: 'Seta, explicitamente, uma variável sem valor.',
+    undefined: 'Representa um valor não-setado.',
+    object: 'Arrays, Datas, Objetos literais, Funções, etc.'
+  }[type]
 }
 
 console.log(typeCheck())
+console.log(typeCheck2())
