@@ -13,10 +13,12 @@ const getCatInfo = () => {
   let age = 3
   const color = 'Cinza'
 
-  console.log(`${name} é um gato ${color} de ${age} anos.`)
+  return { name, age, color}
 }
 
-getCatInfo()
+const { name, age, color } = getCatInfo()
+
+console.log(`${name} é um gato ${color} de ${age} anos.`)
 
 /*
   02
