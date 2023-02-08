@@ -10,7 +10,7 @@
 
 const getCatInfo = () => {
   const name = 'Marcos'
-  let age = 3;
+  let age = 3
   const color = 'Cinza'
 
   return { name, age, color}
